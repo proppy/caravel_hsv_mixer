@@ -3,3 +3,5 @@ precheck_results
 *.lst
 *.vcd
 *.gtkw
+caravel/
+mgmt_core_wrapper/

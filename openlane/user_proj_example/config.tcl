@@ -22,21 +22,24 @@ set ::env(DESIGN_NAME) user_proj_example
 
 set ::env(VERILOG_FILES) "\
 	$::env(CARAVEL_ROOT)/verilog/rtl/defines.v \
-	$script_dir/../../verilog/rtl/user_proj_example.v"
+	$script_dir/../../verilog/rtl/user_proj_example.v \
+	$script_dir/../../verilog/rtl/debounce.v \
+	$script_dir/../../verilog/rtl/encoder.v \
+	$script_dir/../../verilog/rtl/hsv2rgb.v \
+	$script_dir/../../verilog/rtl/hsv_mixer.v \
+	$script_dir/../../verilog/rtl/pwm.v"
 
 set ::env(DESIGN_IS_CORE) 0
 
 set ::env(CLOCK_PORT) "wb_clk_i"
-set ::env(CLOCK_NET) "counter.clk"
-set ::env(CLOCK_PERIOD) "10"
-
-set ::env(FP_SIZING) absolute
-set ::env(DIE_AREA) "0 0 900 600"
+set ::env(CLOCK_NET) "hsv_mixer0.clk"
+set ::env(CLOCK_PERIOD) "50"
 
 set ::env(FP_PIN_ORDER_CFG) $script_dir/pin_order.cfg
 
-set ::env(PL_BASIC_PLACEMENT) 1
-set ::env(PL_TARGET_DENSITY) 0.05
+set ::env(PL_TARGET_DENSITY) 0.4
+set ::env(FP_CORE_UTIL) 30
+set ::env(ROUTING_CORES) 12
 
 # Maximum layer used for routing is metal 4.
 # This is because this macro will be inserted in a top level (user_project_wrapper) 

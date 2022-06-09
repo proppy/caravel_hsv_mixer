@@ -104,21 +104,20 @@ module user_proj_example #(
     assign clk = (~la_oenb[64]) ? la_data_in[64]: wb_clk_i;
     assign rst = (~la_oenb[65]) ? la_data_in[65]: wb_rst_i;
 
-    counter #(
-        .BITS(BITS)
-    ) counter(
-        .clk(clk),
-        .reset(rst),
-        .ready(wbs_ack_o),
-        .valid(valid),
-        .rdata(rdata),
-        .wdata(wbs_dat_i),
-        .wstrb(wstrb),
-        .la_write(la_write),
-        .la_input(la_data_in[63:32]),
-        .count(count)
+    hsv_mixer hsv_mixer0(
+        .clk        (clk),
+        .reset      (rst),
+        .enc0_a     (io_in[8]),
+        .enc0_b     (io_in[9]),
+        .enc1_a     (io_in[10]),
+        .enc1_b     (io_in[11]),
+        .enc2_a     (io_in[12]),
+        .enc2_b     (io_in[13]),
+        .pwm0_out   (io_out[14]),
+        .pwm1_out   (io_out[15]),
+        .pwm2_out   (io_out[16])
     );
-
+   
 endmodule
 
 module counter #(
